@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <CounterGroup/>
+    <CounterGroup v-bind:counterNum="2"/>
   </div>
 </template>
 

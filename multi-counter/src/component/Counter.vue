@@ -1,19 +1,27 @@
 <template>
     <div>
-        <span>{{counter}}</span>
-        <button v-on:click="counter += 1">+</button>
-        <button v-on:click="counter -= 1">-</button>
+        <span>{{currentValue}}</span>
+        <button v-on:click="plus">+</button>
+        <button v-on:click="minus">-</button>
     </div>
 </template>
 
 <script>
     export default {
         name: "Counter",
-        data() {
-            return {
-                counter: 0
-            }
-        }
+        props: {
+            index: Number,
+            currentValue: Number
+        },
+        methods: {
+            plus: function () {
+                this.$emit('update-sum', {index: this.index, counter: this.currentValue + 1});
+            },
+            minus: function () {
+                this.$emit('update-sum', {index: this.index, counter: this.currentValue - 1});
+            },
+
+        },
     }
 </script>
 
