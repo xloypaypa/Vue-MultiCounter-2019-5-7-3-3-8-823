@@ -1,15 +1,17 @@
 <template>
     <div>
-        {{sum}}
+        {{sum()}}
     </div>
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
+
     export default {
         name: "CounterSum",
-        props: {
-            sum: Number
-        }
+        computed: mapGetters([
+            'sum',
+        ]),
     }
 </script>
 

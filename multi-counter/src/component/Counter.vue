@@ -1,27 +1,28 @@
 <template>
     <div>
-        <span>{{currentValue}}</span>
-        <button v-on:click="plus">+</button>
-        <button v-on:click="minus">-</button>
+        <span>{{getCountByIndex(index)}}</span>
+        <button v-on:click="increment(index)">+</button>
+        <button v-on:click="decrement(index)">-</button>
     </div>
 </template>
 
 <script>
+    import { mapGetters, mapMutations } from 'vuex'
+
     export default {
         name: "Counter",
         props: {
             index: Number,
-            currentValue: Number
         },
         methods: {
-            plus: function () {
-                this.$emit('update-sum', {index: this.index, counter: this.currentValue + 1});
-            },
-            minus: function () {
-                this.$emit('update-sum', {index: this.index, counter: this.currentValue - 1});
-            },
-
+            ...mapMutations([
+                'increment',
+                'decrement',
+            ]),
         },
+        computed: mapGetters([
+            'getCountByIndex',
+        ]),
     }
 </script>
 
